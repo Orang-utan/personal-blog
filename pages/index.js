@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
+import client from '../services/contentfulClient';
 
 const currentEvents = [
   'Currently building Pigeon 🐦',
@@ -12,21 +13,34 @@ const currentEvents = [
 export default function Home() {
   const [currentEvent, setCurrentEvent] = useState(currentEvents[0]);
   const [currentProfile, setCurrentProfile] = useState(0);
+  const [posts, setPosts] = useState([]);
+
+  async function fetchPosts() {
+    try {
+      const { items } = await client.getEntries();
+      setPosts(items);
+      console.log(items);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function handleProfileClick() {
+    const profileNum = 3;
+    setCurrentProfile((currentProfile + 1) % profileNum);
+  }
 
   useEffect(() => {
     let pointer = 0;
     const len = currentEvents.length;
+
+    fetchPosts();
 
     setInterval(() => {
       pointer = (pointer + 1) % len;
       setCurrentEvent(currentEvents[pointer]);
     }, 2500);
   }, []);
-
-  function handleProfileClick() {
-    const profileNum = 3;
-    setCurrentProfile((currentProfile + 1) % profileNum);
-  }
 
   return (
     <div className={styles.container}>
@@ -52,43 +66,29 @@ export default function Home() {
         </div>
 
         <div className={styles.bodyContainer}>
-          <p className={styles.paragraph}>
+          <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
             More about me: I'm studying CS + Marketing at UPenn's M&T Program.
             Originally from Hong Kong, I have since lived in Shanghai, Boston,
             and now Philadelphia. I'm a practical idealist, and I care about
             furthering environmental sustainability and social equity through
             media, film, and tech.
           </p>
+
+          <h2 className={styles.subtitle1} style={{ padding: '0px 30px' }}>
+            Moonshot Projects
+          </h2>
         </div>
-
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {posts.length > 0 &&
+            posts.map((res) => (
+              <a href="#" className={styles.card} key={res.sys.id}>
+                <img src={res.fields.featuredImage.fields.file.url} />
+                <div className={styles.textContainer}>
+                  <h3>{res.fields.title}</h3>
+                  <p>{res.fields.shortDescription}</p>
+                </div>
+              </a>
+            ))}
         </div>
       </main>
 
