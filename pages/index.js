@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 const currentEvents = [
   'Currently building Pigeon 🐦',
   'Currently studying at UPenn 🏫',
-  'Currently sourcing project at Hack4Impact 🌍',
+  'Currently sourcing projects at Hack4Impact 🌍',
   'Currently thinking about dinner 🍕',
 ];
 
