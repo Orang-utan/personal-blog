@@ -4,9 +4,9 @@ import styles from '../styles/Home.module.css';
 import client from '../services/contentfulClient';
 
 const currentEvents = [
-  'Currently building Pigeon 🐦',
-  'Currently studying at UPenn 🏫',
-  'Currently sourcing projects at Hack4Impact 🌍',
+  'Currently building <a href="https://joinpigeon.me" target="_blank">Pigeon</a> 🐦',
+  'Currently fixing payday loans at <a href="https://onward.org/" target="_blank">Onward</a> 🏦',
+  'Currently building learning solutions at US DoD 🇺🇸',
   'Currently thinking about dinner 🍕',
 ];
 
@@ -58,6 +58,7 @@ export default function Home() {
           />
           <div>
             <h1 className={styles.title}>Hey! I'm Daniel</h1>
+
             <p
               className={styles.description}
               dangerouslySetInnerHTML={{ __html: currentEvent }}
@@ -70,8 +71,19 @@ export default function Home() {
             More about me: I'm studying CS + Marketing at UPenn's M&T Program.
             Originally from Hong Kong, I have since lived in Shanghai, Boston,
             and now Philadelphia. I'm a practical idealist, and I care about
-            furthering environmental sustainability and social equity through
-            media, film, and tech.
+            building products to help everyone adapt and benefit from an
+            increasingly automated world.
+          </p>
+          <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
+            I'm a full stack engineer. My technical interest lies in distributed
+            systems and making access to computation "
+            <a
+              href="https://www.wired.com/story/what-mongolian-nomads-teach-us-about-the-digital-future/"
+              target="_blank"
+            >
+              nomadic
+            </a>
+            ".
           </p>
 
           <h2 className={styles.subtitle1} style={{ padding: '0px 30px' }}>
@@ -81,7 +93,12 @@ export default function Home() {
         <div className={styles.grid}>
           {posts.length > 0 &&
             posts.map((res) => (
-              <a href="#" className={styles.card} key={res.sys.id}>
+              <a
+                href={res.fields.url}
+                className={styles.card}
+                key={res.sys.id}
+                target="_blank"
+              >
                 <img src={res.fields.featuredImage.fields.file.url} />
                 <div className={styles.textContainer}>
                   <h3>{res.fields.title}</h3>
