@@ -4,9 +4,7 @@ import styles from '../styles/Home.module.css';
 import client from '../services/contentfulClient';
 
 const currentEvents = [
-  'Currently building <a href="https://joinpigeon.me" target="_blank">Pigeon</a> 🐦',
-  'Currently fixing payday loans at <a href="https://onward.org/" target="_blank">Onward</a> 🏦',
-  'Currently building learning solutions at US DoD 🇺🇸',
+  'Currently building <a href="https://lunchable.netlify.app" target="_blank">Lunchable</a> 🌯',
   'Currently thinking about dinner 🍕',
 ];
 
@@ -19,10 +17,7 @@ export default function Home() {
     try {
       const { items } = await client.getEntries();
       setPosts(items);
-      console.log(items);
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
   }
 
   function handleProfileClick() {
@@ -48,6 +43,10 @@ export default function Home() {
         <title>Daniel Tian</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+      ></script>
 
       <main className={styles.main}>
         <div className={styles.headerContainer}>
@@ -58,7 +57,6 @@ export default function Home() {
           />
           <div>
             <h1 className={styles.title}>Hey! I'm Daniel</h1>
-
             <p
               className={styles.description}
               dangerouslySetInnerHTML={{ __html: currentEvent }}
@@ -68,11 +66,28 @@ export default function Home() {
 
         <div className={styles.bodyContainer}>
           <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
-            More about me: I'm studying CS + Marketing at UPenn's M&T Program.
-            Originally from Hong Kong, I have since lived in Shanghai, Boston,
-            and now Philadelphia. I'm a practical idealist, and I care about
-            building products to help everyone adapt and benefit from an
-            increasingly automated world.
+            <strong>Let's Connect:</strong>{' '}
+            <a
+              href="https://www.linkedin.com/in/daniel-y-tian/"
+              target="_blank"
+            >
+              LinkedIn
+            </a>{' '}
+            |{' '}
+            <a href="https://github.com/orang-utan" target="_blank">
+              Github
+            </a>{' '}
+            |{' '}
+            <a href="https://twitter.com/dtjourney" target="_blank">
+              Twitter
+            </a>
+          </p>
+          <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
+            <strong>More about me:</strong> I'm studying CS / Entrepreneurship
+            at UPenn's M&T Program. Originally from Hong Kong, I have since
+            lived in Shanghai, Boston, and now Philadelphia. I'm a practical
+            idealist, and I care about building products to help everyone adapt
+            and benefit from an increasingly automated world.
           </p>
           <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
             I'm a full stack engineer. My technical interest lies in distributed
@@ -109,7 +124,19 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className={styles.footer}>Made with ❤️ by DT</footer>
+      <footer className={styles.footer}>
+        Made with
+        <i
+          className="fas fa-heart"
+          style={{
+            color: '#e74c3c',
+            height: '20px',
+            width: '20px',
+            margin: '0px 5px',
+          }}
+        />
+        by DT
+      </footer>
     </div>
   );
 }
