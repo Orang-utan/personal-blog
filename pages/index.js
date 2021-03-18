@@ -5,6 +5,9 @@ import client from '../services/contentfulClient';
 
 const currentEvents = [
   'Currently building <a href="https://lunchable.netlify.app" target="_blank">Lunchable</a> 🌯',
+  'Currently empowering developers at TikTok 👨‍💻',
+  'Currently helping nonprofits scale at Hack4Impact 🌎',
+  'Currently researching about fintech 🏦',
   'Currently thinking about dinner 🍕',
 ];
 
@@ -83,15 +86,30 @@ export default function Home() {
             </a>
           </p>
           <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
-            <strong>More about me:</strong> I'm studying CS / Entrepreneurship
-            at UPenn's M&T Program. Originally from Hong Kong, I have since
-            lived in Shanghai, Boston, and now Philadelphia. I'm a practical
-            idealist, and I care about building products to help everyone adapt
-            and benefit from an increasingly automated world.
+            <strong>More about me:</strong> I'm studying CS & Marketing at{' '}
+            <a href="https://fisher.wharton.upenn.edu/" target="_blank">
+              UPenn's M&T Program
+            </a>
+            . Currently, I'm a PM at{' '}
+            <a href="https://www.tiktok.com/business/en-US/" target="_blank">
+              TikTok
+            </a>{' '}
+            and the Co-Director at{' '}
+            <a href="https://www.hack4impact.org/" target="_blank">
+              Hack4Impact
+            </a>
+            . Previously, I was an analyst at{' '}
+            <a href="https://www.morganstanley.com/" target="_blank">
+              Morgan Stanley
+            </a>{' '}
+            . I'm a practical idealist, and I care about building products to
+            help everyone adapt and benefit from an increasingly automated
+            world.
           </p>
           <p className={styles.paragraph} style={{ padding: '0px 30px' }}>
-            I'm a full stack engineer. My technical interest lies in distributed
-            systems and making access to computation "
+            I'm also full stack engineer. My technical interest lies in
+            distributed systems, computer vision, and making access to
+            computation "
             <a
               href="https://www.wired.com/story/what-mongolian-nomads-teach-us-about-the-digital-future/"
               target="_blank"
